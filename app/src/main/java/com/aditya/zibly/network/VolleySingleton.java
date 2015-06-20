@@ -37,4 +37,7 @@ public class VolleySingleton {
     public ImageLoader getImageLoader(){
         return imageLoader;
     }
+    public RequestQueue getRequestQueue(){
+        return mRequestQueue;
+    }
 }
