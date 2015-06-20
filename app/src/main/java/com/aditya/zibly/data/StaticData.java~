@@ -14,31 +14,31 @@ public class StaticData {
     private String version_key ="v";
     private String near_key = "near";
 
-    //json data keys for the home screen feed, need to add more for detailed data
+    //json data keys
 		
-		private String response = "response";	//the first object that we get inside the unnamed object
-		private String groups = "groups";	//groups contains the items array, itself it is an array
-		private String items = "items"; //array of unnamed object, there another item named array with unnamed objects inside it
-		private String reasons = "reasons";	//object
-		private String summary = "summary"; //key-value
-		private String venue = "venue"; //object
-		private String id = "id"; //key-value
-		private String name = "name"; //key-value
-		private String location = "location"; //object
-		private String latitude = "lat"; //key-value
-		private String longitude = "lng"; //key-value
-		private String address = "address"; //key-value, and only the main address
-		private String categories = "categories"; //array with unnamed objects
-		private String icon = "icon"; //object
-		private String prefix = "prefix"; //key-value
-		private String suffix = "suffix"; //key-value
-		private String rating = "rating"; //key-value
-		private String tips = "tips"; //array
-		private String text = "text"; //key-value
-		private String user = "user"; //object
-		private String firstname = "firstname"; //key-value
-		private String gender = "gender"; //key-value
-		private String photo = "photo"; //object
+		private String response = "response";
+		private String groups = "groups";
+		private String items = "items";
+		private String reasons = "reasons";
+		private String summary = "summary";
+		private String venue = "venue";
+		private String id = "id";
+		private String name = "name";
+		private String location = "location";
+		private String latitude = "lat";
+		private String longitude = "lng";
+		private String address = "address";
+		private String categories = "categories";
+		private String icon = "icon";
+		private String prefix = "prefix";
+		private String suffix = "suffix";
+		private String rating = "rating";
+		private String tips = "tips";
+		private String text = "text";
+		private String user = "user";
+		private String firstname = "firstname";
+		private String gender = "gender";
+		private String photo = "photo";
 
     //all getter for the variables
 

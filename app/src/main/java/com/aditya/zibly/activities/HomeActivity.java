@@ -25,6 +25,7 @@ public class HomeActivity extends ActionBarActivity {
     private RequestQueue requestQueue;
     private VolleySingleton volleySingleton;
     StaticData staticData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,23 +35,32 @@ public class HomeActivity extends ActionBarActivity {
 
         volleySingleton = VolleySingleton.getInstance();
         requestQueue = volleySingleton.getRequestQueue();
+        sendJsonRequest();
+    }
 
+    private void sendJsonRequest() {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, buildUrl(10),
 
                 new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-            }
-        },
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        parseJsonRequest(response);
+                    }
+                },
                 new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
-            }
-        });
+                    }
+                });
 
         requestQueue.add(request);
+    }
+
+    private void parseJsonRequest(JSONObject response) {
+        if(response==null || response.length()==0){
+            return;
+        }
 
     }
 
@@ -62,7 +72,7 @@ public class HomeActivity extends ActionBarActivity {
                 .appendQueryParameter(staticData.getClient_secret_key(), staticData.getClient_secret())
                 .appendQueryParameter(staticData.getNear_key(), staticData.getNear_value())
                 .appendQueryParameter("limit", limit_).build();
-        return  built_uri.toString();
+        return built_uri.toString();
     }
 
 
