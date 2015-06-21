@@ -78,6 +78,98 @@ public class StaticData {
         return base_url_explore;
     }
 
+    public String getResponse() {
+        return response;
+    }
+
+    public String getGroups() {
+        return groups;
+    }
+
+    public String getItems() {
+        return items;
+    }
+
+    public String getReasons() {
+        return reasons;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getCategories() {
+        return categories;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public String getSuffix() {
+        return suffix;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public String getTips() {
+        return tips;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
     //all setters for variables
 
     public void setNear_value(String near_value) {
@@ -116,4 +208,95 @@ public class StaticData {
         this.base_url_explore = base_url_explore;
     }
 
+    public void setResponse(String response) {
+        this.response = response;
+    }
+
+    public void setGroups(String groups) {
+        this.groups = groups;
+    }
+
+    public void setItems(String items) {
+        this.items = items;
+    }
+
+    public void setReasons(String reasons) {
+        this.reasons = reasons;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCategories(String categories) {
+        this.categories = categories;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public void setTips(String tips) {
+        this.tips = tips;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 }
