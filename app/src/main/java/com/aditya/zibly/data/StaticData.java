@@ -16,29 +16,29 @@ public class StaticData {
 
     //json data keys for the home screen feed, need to add more for detailed data
 		
-		private String response = "response";	//the first object that we get inside the unnamed object
-		private String groups = "groups";	//groups contains the items array, itself it is an array
-		private String items = "items"; //array of unnamed object, there another item named array with unnamed objects inside it
-		private String reasons = "reasons";	//object
-		private String summary = "summary"; //key-value
-		private String venue = "venue"; //object
-		private String id = "id"; //key-value
-		private String name = "name"; //key-value
-		private String location = "location"; //object
-		private String latitude = "lat"; //key-value
-		private String longitude = "lng"; //key-value
-		private String address = "address"; //key-value, and only the main address
-		private String categories = "categories"; //array with unnamed objects
-		private String icon = "icon"; //object
-		private String prefix = "prefix"; //key-value
-		private String suffix = "suffix"; //key-value
-		private String rating = "rating"; //key-value
-		private String tips = "tips"; //array
-		private String text = "text"; //key-value
-		private String user = "user"; //object
-		private String firstname = "firstname"; //key-value
-		private String gender = "gender"; //key-value
-		private String photo = "photo"; //object
+    private String response = "response";	//the first object that we get inside the unnamed object
+    private String groups = "groups";	//groups contains the items array, itself it is an array
+    private String items = "items"; //array of unnamed object, there another item named array with unnamed objects inside it
+    private String reasons = "reasons";	//object
+    private String summary = "summary"; //key-value
+    private String venue = "venue"; //object
+    private String id = "id"; //key-value
+    private String name = "name"; //key-value
+    private String location = "location"; //object
+    private String latitude = "lat"; //key-value
+    private String longitude = "lng"; //key-value
+    private String address = "address"; //key-value, and only the main address
+    private String categories = "categories"; //array with unnamed objects
+    private String icon = "icon"; //object
+    private String prefix = "prefix"; //key-value
+    private String suffix = "suffix"; //key-value
+    private String rating = "rating"; //key-value
+    private String tips = "tips"; //array
+    private String text = "text"; //key-value
+    private String user = "user"; //object
+    private String firstname = "firstname"; //key-value
+    private String gender = "gender"; //key-value
+    private String photo = "photo"; //object
 
     //all getter for the variables
 

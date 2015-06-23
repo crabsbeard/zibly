@@ -3,12 +3,15 @@ package com.aditya.zibly.activities;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.aditya.zibly.R;
 import com.aditya.zibly.data.StaticData;
 import com.aditya.zibly.network.VolleySingleton;
+import com.aditya.zibly.pojo.ExploreCard;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -16,7 +19,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 public class HomeActivity extends ActionBarActivity {
@@ -25,11 +32,18 @@ public class HomeActivity extends ActionBarActivity {
     private RequestQueue requestQueue;
     private VolleySingleton volleySingleton;
     StaticData staticData;
+    private RecyclerView rv_places_list;
+    ArrayList<ExploreCard> exploreCardArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        //initialize recycler view
+
+        rv_places_list = (RecyclerView)findViewById(R.id.rv_places);
+        rv_places_list.setLayoutManager(new LinearLayoutManager(this));
 
         //getting json data
 
@@ -44,7 +58,7 @@ public class HomeActivity extends ActionBarActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        parseJsonRequest(response);
+                        parseJsonResponse(response);
                     }
                 },
                 new Response.ErrorListener() {
@@ -57,11 +71,48 @@ public class HomeActivity extends ActionBarActivity {
         requestQueue.add(request);
     }
 
-    private void parseJsonRequest(JSONObject response) {
+    private void parseJsonResponse(JSONObject response) {
         if(response==null || response.length()==0){
             return;
         }
+        //need to add code to parse json feed
 
+        try {
+            JSONArray itemsJsonArray = response.getJSONArray(staticData.getGroups()).getJSONObject(0).getJSONArray(staticData.getItems());
+            for(int i = 0; i<itemsJsonArray.length();i++){
+                JSONObject venueJsonObject = itemsJsonArray.getJSONObject(i).getJSONObject(staticData.getVenue());
+                JSONObject locationJsonObject = venueJsonObject.getJSONObject(staticData.getLocation());
+                //adding data into array list
+
+                ExploreCard currentCard = new ExploreCard();
+                currentCard.setId(venueJsonObject.getString(staticData.getId()));
+                currentCard.setPlace_name(venueJsonObject.getString(staticData.getName()));
+                currentCard.setPlace_address(locationJsonObject.getString(staticData.getAddress()));
+                currentCard.setRating((float)(venueJsonObject.getDouble(staticData.getRating())));
+                currentCard.setPlace_distance(calculateDistance(locationJsonObject.getDouble(staticData.getLatitude()),
+                        locationJsonObject.getDouble(staticData.getLongitude())));
+
+                /*
+                String id;
+                String name;
+                String address;
+                Float latitude;
+                Float longitude;
+                Float rating;
+                String icon_url;
+                Boolean like_status;
+                */
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private String calculateDistance(double lat, double lon) {
+
+        return null;
     }
 
     private String buildUrl(int limit) {
