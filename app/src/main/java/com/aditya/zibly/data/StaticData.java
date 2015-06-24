@@ -7,7 +7,10 @@ public class StaticData {
     private String client_secret = "EEEOE0YNKQJOYLF02OTC134HOH4RN5UJDTBHPSX4WOTJHYL5";
     private String version = "20150619";
     private String base_url_explore = "https://api.foursquare.com/v2/venues/explore";
+    private String base_url = "https://api.foursquare.com/v2/";
     private String near_value = "New Delhi";
+    private String venues = "venues";
+    private String photos = "photos";
 
     private String client_id_key = "client_id";
     private String client_secret_key = "client_secret";
@@ -22,6 +25,7 @@ public class StaticData {
     private String reasons = "reasons";	//object
     private String summary = "summary"; //key-value
     private String venue = "venue"; //object
+    private String like = "like"; //key-value
     private String id = "id"; //key-value
     private String name = "name"; //key-value
     private String location = "location"; //object
@@ -41,6 +45,23 @@ public class StaticData {
     private String photo = "photo"; //object
 
     //all getter for the variables
+
+
+    public String getBase_url() {
+        return base_url;
+    }
+
+    public String getVenues() {
+        return venues;
+    }
+
+    public String getPhotos() {
+        return photos;
+    }
+
+    public String getLike() {
+        return like;
+    }
 
     public String getNear_value() {
         return near_value;
@@ -171,6 +192,23 @@ public class StaticData {
     }
 
     //all setters for variables
+
+
+    public void setPhotos(String photos) {
+        this.photos = photos;
+    }
+
+    public void setBase_url(String base_url) {
+        this.base_url = base_url;
+    }
+
+    public void setVenues(String venues) {
+        this.venues = venues;
+    }
+
+    public void setLike(String like) {
+        this.like = like;
+    }
 
     public void setNear_value(String near_value) {
         this.near_value = near_value;

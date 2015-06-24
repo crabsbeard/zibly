@@ -2,12 +2,25 @@ package com.aditya.zibly.pojo;//Created by aditya on 6/19/2015
 
 public class ExploreCard {
     private String id;
+    private String place_image_url;
     private String place_name;
     private String place_address;
     private float rating;
-    private int heart_status; //0 for no 1 for yes
+    private boolean heart_status; //0 for no 1 for yes
     private String place_distance;
     private String place_type_icon; //number for the icon to be used
+
+    public String getPlace_image_url() {
+        return place_image_url;
+    }
+
+    public boolean isHeart_status() {
+        return heart_status;
+    }
+
+    public void setPlace_image_url(String place_image_url) {
+        this.place_image_url = place_image_url;
+    }
 
     public void setId(String id) {
         this.id = id;
@@ -25,7 +38,7 @@ public class ExploreCard {
         this.rating = rating;
     }
 
-    public void setHeart_status(int heart_status) {
+    public void setHeart_status(boolean heart_status) {
         this.heart_status = heart_status;
     }
 
@@ -53,7 +66,7 @@ public class ExploreCard {
         return rating;
     }
 
-    public int getHeart_status() {
+    public boolean getHeart_status() {
         return heart_status;
     }
 

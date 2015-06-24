@@ -10,7 +10,9 @@ import android.view.MenuItem;
 
 import com.aditya.zibly.R;
 import com.aditya.zibly.data.StaticData;
+import com.aditya.zibly.location.LocationService;
 import com.aditya.zibly.network.VolleySingleton;
+import com.aditya.zibly.pojo.Calculators;
 import com.aditya.zibly.pojo.ExploreCard;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class HomeActivity extends ActionBarActivity {
@@ -34,12 +37,15 @@ public class HomeActivity extends ActionBarActivity {
     StaticData staticData;
     private RecyclerView rv_places_list;
     ArrayList<ExploreCard> exploreCardArrayList = new ArrayList<>();
+    private String iconSize = "44";
+    Calculators calculators;
+    private String imageUrlFromApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        calculators = new Calculators(this);
         //initialize recycler view
 
         rv_places_list = (RecyclerView)findViewById(R.id.rv_places);
@@ -82,27 +88,36 @@ public class HomeActivity extends ActionBarActivity {
             for(int i = 0; i<itemsJsonArray.length();i++){
                 JSONObject venueJsonObject = itemsJsonArray.getJSONObject(i).getJSONObject(staticData.getVenue());
                 JSONObject locationJsonObject = venueJsonObject.getJSONObject(staticData.getLocation());
+                JSONArray categoryJsonObject = venueJsonObject.getJSONArray(staticData.getCategories());
+                JSONObject cateInfoJsonObject = categoryJsonObject.getJSONObject(0);
+                JSONObject iconJsonObject = cateInfoJsonObject.getJSONObject(staticData.getIcon());
+
                 //adding data into array list
 
                 ExploreCard currentCard = new ExploreCard();
-                currentCard.setId(venueJsonObject.getString(staticData.getId()));
-                currentCard.setPlace_name(venueJsonObject.getString(staticData.getName()));
-                currentCard.setPlace_address(locationJsonObject.getString(staticData.getAddress()));
-                currentCard.setRating((float)(venueJsonObject.getDouble(staticData.getRating())));
-                currentCard.setPlace_distance(calculateDistance(locationJsonObject.getDouble(staticData.getLatitude()),
-                        locationJsonObject.getDouble(staticData.getLongitude())));
+                currentCard.setId(venueJsonObject.getString(staticData.getId())); //add id
+                currentCard.setPlace_name(venueJsonObject.getString(staticData.getName())); //add name
+                currentCard.setPlace_address(locationJsonObject.getString(staticData.getAddress())); //add address
+                currentCard.setRating((float)(venueJsonObject.getDouble(staticData.getRating())/2)); //add rating
+                currentCard.setPlace_distance(calculators.calculateDistance(locationJsonObject.getDouble(staticData.getLatitude()),
+                        locationJsonObject.getDouble(staticData.getLongitude()))); //calculate distance and add the value
+                //getting like status by first checking if it exist or not
+                if(venueJsonObject.has(staticData.getLike())){
+                    currentCard.setHeart_status(venueJsonObject.getBoolean(staticData.getLike()));
+                }
+                else{
+                    //this means the user is not signed in
+                    currentCard.setHeart_status(false);
+                }
+                int limit = 10;
+                currentCard.setPlace_type_icon(build_url(iconJsonObject.getString(staticData.getPrefix()),
+                        iconJsonObject.getString(staticData.getSuffix())));
+                //setting up the cover image url using id and stuff
+                currentCard.setPlace_image_url(getImageUrlFromApi(venueJsonObject.getString(staticData.getId()),limit));
 
-                /*
-                String id;
-                String name;
-                String address;
-                Float latitude;
-                Float longitude;
-                Float rating;
-                String icon_url;
-                Boolean like_status;
-                */
+                //adding the ccurrent card to the array list
 
+                exploreCardArrayList.add(currentCard);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -110,9 +125,67 @@ public class HomeActivity extends ActionBarActivity {
 
     }
 
-    private String calculateDistance(double lat, double lon) {
+    public String getImageUrlFromApi(String id, final int limit) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, imageUrlSet(id, limit),
+                new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                imageUrlFromApi = parseImageJsonResponse(response, limit);
+            }
+        },
+                new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
-        return null;
+            }
+        });
+
+        requestQueue.add(jsonObjectRequest);
+        return imageUrlFromApi;
+    }
+
+    private String parseImageJsonResponse(JSONObject jsonObject, int limit) {
+        String imageUrl = null;
+        if(jsonObject==null || jsonObject.length()==0){
+            return null;
+        }
+        try {
+            JSONObject randomPhotoItem = jsonObject.getJSONArray(staticData.getItems()).getJSONObject(randomIndex(limit));
+            imageUrl = coverImageBuilder(randomPhotoItem.getString(staticData.getPrefix()),
+                    randomPhotoItem.getString(staticData.getSuffix()));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return imageUrl;
+    }
+
+    private String coverImageBuilder(String prefix, String suffix) {
+        String resolution = "500x300";
+        return prefix+resolution+suffix;
+    }
+
+    private int randomIndex(int maxLimit){
+        Random rand = new Random();
+        return rand.nextInt(maxLimit) + 1;
+    }
+
+    private String imageUrlSet(String id, int limit) {
+        Uri uri = Uri.parse(staticData.getBase_url()).buildUpon()
+                .appendPath(staticData.getVenues())
+                .appendPath(id)
+                .appendPath(staticData.getPhotos())
+                .appendQueryParameter(staticData.getVersion_key(), staticData.getVersion())
+                .appendQueryParameter("limit", Integer.toString(limit))
+                .appendQueryParameter(staticData.getClient_id_key(), staticData.getClient_id())
+                .appendQueryParameter(staticData.getClient_secret_key(), staticData.getClient_secret()).build();
+
+        return uri.toString();
+    }
+
+    private String build_url(String prefix, String suffix) {
+        String ret_icon_url;
+        ret_icon_url = prefix+getIconSize()+suffix;
+        return ret_icon_url;
     }
 
     private String buildUrl(int limit) {
@@ -125,7 +198,6 @@ public class HomeActivity extends ActionBarActivity {
                 .appendQueryParameter("limit", limit_).build();
         return built_uri.toString();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -148,4 +220,13 @@ public class HomeActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public String getIconSize() {
+        return iconSize;
+    }
+
+    public void setIconSize(String iconSize) {
+        this.iconSize = iconSize;
+    }
+
 }
