@@ -35,7 +35,7 @@ public class AdapterPlacesHome extends RecyclerView.Adapter<PlacesViewHolder> {
 
     //setter method for array list of explore cards
 
-    private void setExploreCardsList(ArrayList<ExploreCard> exploreCardsList){
+    public void setExploreCardsList(ArrayList<ExploreCard> exploreCardsList){
         this.exploreCardsList = exploreCardsList;
         notifyItemRangeChanged(0, exploreCardsList.size());
     }

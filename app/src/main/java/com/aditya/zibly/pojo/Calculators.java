@@ -1,7 +1,9 @@
 package com.aditya.zibly.pojo;
 
 import android.content.Context;
+
 import com.aditya.zibly.location.LocationService;
+
 import java.lang.Math;
 
 
@@ -11,42 +13,60 @@ import java.lang.Math;
 public class Calculators {
     LocationService locationService;
     float a, b, c, d;
-    float radiusMotherEarth = 6373.0F;
-    public Calculators(Context context){
+    float radiusMotherEarth = 6371.0F;
+
+    public Calculators(Context context) {
         locationService = new LocationService(context);
     }
+
     public String calculateDistance(double lat, double lon) {
         double user_lat = locationService.getUserLat();
         double user_lon = locationService.getUserLon();
         String distance = "N/A";
 
-        //function to calculate the distance, using the Haversine formula, because we need hardcore accuracy mofo
+        float disF = calculationFormula(lat, lon, user_lat, user_lon);
 
-        float diffLat = (float)(lat - user_lat);
-        float diffLon = (float)(lon - user_lon);
-        //the variables a, b, c and d have meaning that I don't know, but hey the shit works, who gives a flying eff anyway
-
-        a= (float)(Math.pow((Math.sin(diffLat / 2)), 2)+Math.cos(lat)*Math.cos(user_lat)*Math.pow((Math.sin(diffLon/2)),2));
-        c = (float)(2*Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
-        d = radiusMotherEarth * c; //in Km for getting value in miles, simply have to change the radiusMotherEarth value
-
-        if(d<1.0f){
+        if (disF < 1.0f) {
             //the distance is in meters
-            Float dis = d;
+            Float dis = disF;
             distance = dis.toString();
-            distance = distance.substring(2,5) + " m";
-        }
-        else if(d==0.0f || d<0.020f){
+            distance = distance.substring(2, 5) + " m";
+        } else if (disF == 0.0f || disF < 0.020f) {
             //some problem or very close
             distance = "Look Around!";
-        }
-        else{
+        } else {
             //distance is in kilometers
-            Float dis = d;
+            Float dis = disF;
             distance = dis.toString();
-            distance = distance.substring(0,3) + " km";
+            distance = distance.substring(0, 4) + " km";
         }
 
         return distance;
+    }
+
+    private float calculationFormula(double lat1, double lon1, double lat2, double lon2) {
+        //float diffLat = (float) (lat1 - lat2);
+        //float diffLon = (float) (lon1 - lon2);
+        a= (float)( 0.5 - Math.cos((lat2 - lat1) * Math.PI / 180)/2 +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                        (1 - Math.cos((lon2 - lon1) * Math.PI / 180))/2);
+
+      /*  a = (float) (
+                Math.sin(diffLat / 2) * Math.sin(diffLat / 2)
+                        + Math.cos(degToRad(lat)) * Math.cos(degToRad(user_lat))
+                        * (Math.sin(diffLon / 2)) * (Math.sin(diffLon / 2))
+        );
+
+        c = (float) (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+        d = radiusMotherEarth * c; //in Km for getting value in miles, simply have to change the radiusMotherEarth value
+        */
+
+        d = (float)(radiusMotherEarth*2*Math.asin(Math.sqrt(a)));
+
+        return d;
+    }
+
+    private double degToRad(double deg) {
+        return deg*(Math.PI/180);
     }
 }

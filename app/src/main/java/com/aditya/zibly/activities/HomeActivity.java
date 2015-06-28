@@ -1,14 +1,18 @@
 package com.aditya.zibly.activities;
 
+import android.content.Context;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import com.aditya.zibly.R;
+import com.aditya.zibly.adapters.AdapterPlacesHome;
 import com.aditya.zibly.data.StaticData;
 import com.aditya.zibly.location.LocationService;
 import com.aditya.zibly.network.VolleySingleton;
@@ -40,11 +44,14 @@ public class HomeActivity extends ActionBarActivity {
     private String iconSize = "44";
     Calculators calculators;
     private String imageUrlFromApi;
-
+    AdapterPlacesHome adapterPlacesHome;
+    ImageView coverImageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        staticData = new StaticData();
         calculators = new Calculators(this);
         //initialize recycler view
 
@@ -55,16 +62,20 @@ public class HomeActivity extends ActionBarActivity {
 
         volleySingleton = VolleySingleton.getInstance();
         requestQueue = volleySingleton.getRequestQueue();
-        sendJsonRequest();
+        sendJsonRequest(this);
+
     }
 
-    private void sendJsonRequest() {
+    private void sendJsonRequest(final Context context) {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, buildUrl(10),
 
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        parseJsonResponse(response);
+                        exploreCardArrayList = parseJsonResponse(response);
+                        adapterPlacesHome = new AdapterPlacesHome(context);
+                        adapterPlacesHome.setExploreCardsList(exploreCardArrayList);
+                        rv_places_list.setAdapter(adapterPlacesHome);
                     }
                 },
                 new Response.ErrorListener() {
@@ -77,14 +88,18 @@ public class HomeActivity extends ActionBarActivity {
         requestQueue.add(request);
     }
 
-    private void parseJsonResponse(JSONObject response) {
+    private ArrayList<ExploreCard> parseJsonResponse(JSONObject response) {
+        ArrayList<ExploreCard> exploreCardArrayList = new ArrayList<>();
         if(response==null || response.length()==0){
-            return;
+            return exploreCardArrayList;
         }
         //need to add code to parse json feed
 
         try {
-            JSONArray itemsJsonArray = response.getJSONArray(staticData.getGroups()).getJSONObject(0).getJSONArray(staticData.getItems());
+            JSONArray itemsJsonArray = response.getJSONObject(staticData.getResponse())
+                    .getJSONArray(staticData.getGroups())
+                    .getJSONObject(0)
+                    .getJSONArray(staticData.getItems());
             for(int i = 0; i<itemsJsonArray.length();i++){
                 JSONObject venueJsonObject = itemsJsonArray.getJSONObject(i).getJSONObject(staticData.getVenue());
                 JSONObject locationJsonObject = venueJsonObject.getJSONObject(staticData.getLocation());
@@ -122,7 +137,7 @@ public class HomeActivity extends ActionBarActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+        return exploreCardArrayList;
     }
 
     public String getImageUrlFromApi(String id, final int limit) {
@@ -150,7 +165,11 @@ public class HomeActivity extends ActionBarActivity {
             return null;
         }
         try {
-            JSONObject randomPhotoItem = jsonObject.getJSONArray(staticData.getItems()).getJSONObject(randomIndex(limit));
+            JSONObject randomPhotoItem = jsonObject
+                    .getJSONObject(staticData.getResponse())
+                    .getJSONObject(staticData.getPhotos())
+                    .getJSONArray(staticData.getItems())
+                    .getJSONObject(randomIndex(limit));
             imageUrl = coverImageBuilder(randomPhotoItem.getString(staticData.getPrefix()),
                     randomPhotoItem.getString(staticData.getSuffix()));
         } catch (JSONException e) {

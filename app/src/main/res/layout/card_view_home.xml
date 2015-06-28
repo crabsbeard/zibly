@@ -1,6 +1,10 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardBackgroundColor="#efefef"
     android:layout_width="match_parent"
+    card_view:cardUseCompatPadding="true"
+    android:paddingBottom="8dp"
+    card_view:contentPaddingBottom="12dp"
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="4dp">
 
@@ -11,17 +15,17 @@
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="160dp">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/iv_location_image"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/_placeholder" />
+                android:src="@drawable/placeholder" />
 
             <TextView
                 android:textColor="#fff"
@@ -42,62 +46,56 @@
                 android:text="250 m" />
 
         </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#efefef">
-
-            <ImageView
-                android:src="@drawable/_defaultIcon"
-                android:background="@drawable/circle"
-                android:id="@+id/iv_location_icon"
-                android:scaleType="centerInside"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_alignParentLeft="true"
-                android:layout_marginBottom="12dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="12dp"
-                android:padding="8dp" />
-
-            <TextView
+            <RelativeLayout
+                android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="The Grand Coffee House"
-                android:textSize="16sp"
-                android:id="@+id/tv_location_name"
-                android:layout_alignTop="@+id/iv_location_icon"
-                android:layout_toRightOf="@+id/iv_location_icon"
-                android:layout_toEndOf="@+id/iv_location_icon"
-                android:layout_marginLeft="12dp"
-                android:layout_marginStart="12dp" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hauz Khas, New Delhi"
-                android:textSize="14sp"
-                android:id="@+id/tv_location_address"
-                android:layout_below="@+id/tv_location_name"
-                android:layout_alignLeft="@+id/tv_location_name"
-                android:layout_alignStart="@+id/tv_location_name"
-                android:layout_marginTop="4dp" />
+                <ImageView
+                    android:src="@drawable/default_icon"
+                    android:background="@drawable/circle"
+                    android:id="@+id/iv_location_icon"
+                    android:scaleType="fitCenter"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="16dp"
+                    android:padding="8dp" />
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/_dislike"
-                android:scaleType="centerInside"
-                android:id="@+id/iv_like_icon"
-                android:layout_marginBottom="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="16dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="The Grand Coffee House"
+                    android:textSize="14sp"
+                    android:id="@+id/tv_location_name"
+                    android:layout_alignTop="@+id/iv_location_icon"
+                    android:layout_toRightOf="@+id/iv_location_icon"
+                    android:layout_toEndOf="@+id/iv_location_icon"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hauz Khas, New Delhi"
+                    android:textSize="10sp"
+                    android:id="@+id/tv_location_address"
+                    android:layout_below="@+id/tv_location_name"
+                    android:layout_alignLeft="@+id/tv_location_name"
+                    android:layout_alignStart="@+id/tv_location_name"
+                    android:layout_marginTop="2dp" />
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/dislike"
+                    android:scaleType="centerInside"
+                    android:id="@+id/iv_like_icon"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
     </LinearLayout>
-
 </android.support.v7.widget.CardView>
 
