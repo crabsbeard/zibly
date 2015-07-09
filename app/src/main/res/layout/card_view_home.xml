@@ -35,14 +35,14 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginRight="12dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/round_rec"
                 android:paddingBottom="8dp"
-                android:paddingLeft="18dp"
-                android:paddingRight="18dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:paddingTop="8dp"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 android:text="250 m" />
 
         </RelativeLayout>
@@ -91,10 +91,11 @@
                     android:src="@drawable/dislike"
                     android:scaleType="centerInside"
                     android:id="@+id/iv_like_icon"
-                    android:layout_marginBottom="12dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="15dp" />
             </RelativeLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

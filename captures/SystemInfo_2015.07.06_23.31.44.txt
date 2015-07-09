@@ -1,0 +1,59 @@
+TASK com.aditya.multithreading id=65
+  ACTIVITY com.aditya.multithreading/.SecondActivity 41cbbe10 pid=20923
+    Local FragmentActivity 41375350 State:
+      mCreated=truemResumed=true mStopped=false mReallyStopped=false
+      mLoadersStarted=true
+    FragmentManager misc state:
+      mActivity=com.aditya.multithreading.SecondActivity@41375350
+      mContainer=android.support.v4.app.FragmentActivity$2@41375630
+      mCurState=5 mStateSaved=false mDestroyed=false
+    View Hierarchy:
+      com.android.internal.policy.impl.PhoneWindow$DecorView{413762e8 V.E..... ... 0,0-480,800}
+        android.widget.LinearLayout{41376a98 V.E..... ... 0,0-480,800}
+          android.view.ViewStub{41377568 G.E..... ... 0,0-0,0 #102035f}
+          android.widget.FrameLayout{41377778 V.E..... ... 0,38-480,800}
+            android.support.v7.internal.widget.ActionBarOverlayLayout{413785a0 V.ED.... ... 0,0-480,762 #7f0a003e app:id/decor_content_parent}
+              android.support.v7.internal.widget.ContentFrameLayout{41378d60 V.ED.... ... 0,84-480,762 #1020002 android:id/content}
+                android.widget.RelativeLayout{4137e420 V.E..... ... 0,0-480,678}
+                  android.support.v7.widget.AppCompatButton{4137e938 VFED..C. ... 145,303-335,375}
+              android.support.v7.internal.widget.ActionBarContainer{41379238 V.ED.... ... 0,0-480,84 #7f0a003f app:id/action_bar_container}
+                android.support.v7.widget.Toolbar{41379850 V.E..... ... 0,0-480,84 #7f0a0040 app:id/action_bar}
+                  android.widget.TextView{4137c7e8 V.ED.... ... 24,21-230,62}
+                  android.support.v7.widget.ActionMenuView{413826a8 V.E..... ... 408,0-480,84}
+                    android.support.v7.internal.view.menu.ActionMenuItemView{413845e8 VFED..CL ... 0,6-72,78 #7f0a0062 app:id/action_settings}
+                android.support.v7.internal.widget.ActionBarContextView{4137b488 G.E..... ... 0,0-0,0 #7f0a0041 app:id/action_context_bar}
+
+  ACTIVITY com.aditya.multithreading/.FirstActivity 417d2cb8 pid=20923
+    Local FragmentActivity 4122c470 State:
+      mCreated=truemResumed=false mStopped=true mReallyStopped=true
+      mLoadersStarted=false
+    FragmentManager misc state:
+      mActivity=com.aditya.multithreading.FirstActivity@4122c470
+      mContainer=android.support.v4.app.FragmentActivity$2@4122e190
+      mCurState=2 mStateSaved=true mDestroyed=false
+    View Hierarchy:
+      com.android.internal.policy.impl.PhoneWindow$DecorView{41235f80 I.E..... ... 0,0-480,800}
+        android.widget.LinearLayout{41237cb0 V.E..... ... 0,0-480,800}
+          android.view.ViewStub{4123b1d0 G.E..... ... 0,0-0,0 #102035f}
+          android.widget.FrameLayout{4123b5a8 V.E..... ... 0,38-480,800}
+            android.support.v7.internal.widget.ActionBarOverlayLayout{4123ffd8 V.ED.... ... 0,0-480,762 #7f0a003e app:id/decor_content_parent}
+              android.support.v7.internal.widget.ContentFrameLayout{41243520 V.ED.... ... 0,84-480,762 #1020002 android:id/content}
+                android.widget.RelativeLayout{4125ce90 V.E..... ... 0,0-480,678}
+                  android.support.v7.widget.AppCompatTextView{4125d6f8 V.ED.... ... 0,57-480,86 #7f0a004f app:id/et_field}
+                  android.support.v7.widget.AppCompatButton{4125e8a0 VFED..C. ... 131,142-348,214 #7f0a0050 app:id/b_getImage}
+                  android.widget.LinearLayout{41260950 G.E..... ... 0,0-0,0 #7f0a0051 app:id/loaderGroup}
+                    android.support.v7.widget.AppCompatTextView{41260d80 V.ED.... ... 0,0-0,0 #7f0a0052 app:id/tv_loading}
+                    android.widget.ProgressBar{41261420 V.ED.... ... 0,0-0,0 #7f0a0053 app:id/downloadProgressBar}
+                  android.widget.ListView{41262030 VFED.VC. F.. 0,237-480,674 #7f0a0054 app:id/lv_url}
+                    android.support.v7.widget.AppCompatTextView{4126c1c0 V.ED.... ... 0,0-480,72 #1020014 android:id/text1}
+                    android.support.v7.widget.AppCompatTextView{4126d5f0 V.ED.... ... 0,73-480,145 #1020014 android:id/text1}
+                    android.support.v7.widget.AppCompatTextView{4126dbc0 V.ED.... ... 0,146-480,218 #1020014 android:id/text1}
+                    android.support.v7.widget.AppCompatTextView{4126e190 V.ED.... ... 0,219-480,291 #1020014 android:id/text1}
+                    android.support.v7.widget.AppCompatTextView{4126e760 V.ED.... ... 0,292-480,364 #1020014 android:id/text1}
+                    android.support.v7.widget.AppCompatTextView{4126ed30 V.ED.... ... 0,365-480,437 #1020014 android:id/text1}
+              android.support.v7.internal.widget.ActionBarContainer{41244138 V.ED.... ... 0,0-480,84 #7f0a003f app:id/action_bar_container}
+                android.support.v7.widget.Toolbar{41245d18 V.E..... ... 0,0-480,84 #7f0a0040 app:id/action_bar}
+                  android.widget.TextView{41257ea8 V.ED.... ... 24,21-230,62}
+                  android.support.v7.widget.ActionMenuView{41275158 V.E..... ... 408,0-480,84}
+                    android.support.v7.internal.view.menu.ActionMenuItemView{4134e590 VFED..CL ... 0,6-72,78 #7f0a0062 app:id/action_settings}
+                android.support.v7.internal.widget.ActionBarContextView{41252900 G.E..... ... 0,0-0,0 #7f0a0041 app:id/action_context_bar}

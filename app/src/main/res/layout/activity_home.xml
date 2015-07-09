@@ -11,32 +11,119 @@
         android:scaleType="centerCrop"
         android:src="@drawable/_background" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="24dp"
-            android:text="Top Places Near You"
-            android:textColor="#fff"
-            android:textSize="28sp" />
+    <TextView
+        android:id="@+id/tv_loading_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Getting Best Places For You"
+        android:textColor="#fff"
+        android:textSize="18sp" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_places"
+    <com.gc.materialdesign.views.ProgressBarIndeterminate
+        android:id="@+id/progressBar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_loading_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="#ffb01529" />
+
+
+    <ScrollView
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/sv_master"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp">
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/textView"
-            android:layout_marginTop="32dp" />
-    </RelativeLayout>
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp">
 
+            <TextView
+                android:id="@+id/tv_top_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:text="Top Places Near You"
+                android:textColor="#fff"
+                android:textSize="22sp" />
 
+            <TextView
+                android:id="@+id/tv_title_1"
+                android:layout_below="@id/tv_top_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp"
+                android:text="Coffee and Drinks"
+                android:textColor="#fff"
+                android:textStyle="italic" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_places_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/tv_title_1"
+                android:layout_marginTop="24dp" />
+
+            <TextView
+                android:id="@+id/tv_title_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rv_places_1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Outdoor Visit"
+                android:textColor="#fff"
+                android:textStyle="italic" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_places_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/tv_title_2"
+                android:layout_marginTop="24dp" />
+
+            <TextView
+                android:id="@+id/tv_title_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rv_places_2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Fun and Games"
+                android:textColor="#fff"
+                android:textStyle="italic" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_places_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/tv_title_3"
+                android:layout_marginTop="24dp" />
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
+
+

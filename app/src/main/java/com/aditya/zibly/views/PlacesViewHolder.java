@@ -2,6 +2,7 @@ package com.aditya.zibly.views;
 
 import android.app.Activity;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.aditya.zibly.R;
+import com.aditya.zibly.activities.HomeActivity;
 
 import java.util.ArrayList;
 
@@ -27,8 +29,13 @@ public class PlacesViewHolder extends RecyclerView.ViewHolder {
     private ImageView iv_like_icon;
     private RatingBar rb_place_rating;
 
+    Typeface typeface_distance;
+    Typeface typeface_location;
+    Typeface typeface_name;
+
     public PlacesViewHolder(View itemView) {
         super(itemView);
+        setupTypeFaces(itemView);
         iv_place_cover = (ImageView) itemView.findViewById(R.id.iv_location_image);
         int width = getCoverImageSize();
         setCoverImage(width, iv_place_cover);
@@ -37,6 +44,20 @@ public class PlacesViewHolder extends RecyclerView.ViewHolder {
         tv_place_name = (TextView) itemView.findViewById(R.id.tv_location_name);
         tv_place_address = (TextView) itemView.findViewById(R.id.tv_location_address);
         iv_like_icon = (ImageView) itemView.findViewById(R.id.iv_like_icon);
+        setupTextTypeFace();
+    }
+
+    private void setupTextTypeFace() {
+        tv_place_distance.setTypeface(typeface_distance);
+        tv_place_address.setTypeface(typeface_location);
+        tv_place_name.setTypeface(typeface_name);
+    }
+
+    private void setupTypeFaces(View itemView) {
+        typeface_distance = (Typeface.createFromAsset(itemView.getContext().getAssets(), "font_distance.otf"));
+        typeface_location = (Typeface.createFromAsset(itemView.getContext().getAssets(), "font_location.otf"));
+        typeface_name = Typeface.createFromAsset(itemView.getContext().getAssets(), "font_name.ttf");
+
     }
 
     private void setCoverImage(int width, ImageView iv_place_cover) {

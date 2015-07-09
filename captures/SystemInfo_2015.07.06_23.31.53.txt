@@ -1,0 +1,33 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.DEFAULT:
+        41c733c8 com.aditya.multithreading/.SecondActivity filter 41c734f8
+      android.intent.action.MAIN:
+        41c72f48 com.aditya.multithreading/.FirstActivity filter 41c730c8
+ 
+Packages:
+  Package [com.aditya.multithreading] (41bf2df8):
+    userId=10079 gids=[3003, 1015, 1028]
+    sharedUser=null
+    pkg=Package{41fe24d0 com.aditya.multithreading}
+    codePath=/data/app/com.aditya.multithreading-1.apk
+    resourcePath=/data/app/com.aditya.multithreading-1.apk
+    nativeLibraryPath=/data/app-lib/com.aditya.multithreading-1
+    versionCode=1
+    applicationInfo=ApplicationInfo{41fe2570 com.aditya.multithreading}
+    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    versionName=1.0
+    dataDir=/data/data/com.aditya.multithreading
+    targetSdk=22
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2015-07-06 23:31:14
+    firstInstallTime=2015-07-06 12:57:31
+    lastUpdateTime=2015-07-06 23:31:14
+    signatures=PackageSignatures{41813548 [4176d948]}
+    permissionsFixed=true haveGids=true installStatus=1
+    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    User 0:  installed=true stopped=false notLaunched=false enabled=0
+    grantedPermissions:
+      android.permission.READ_EXTERNAL_STORAGE
+      android.permission.WRITE_EXTERNAL_STORAGE
+      android.permission.INTERNET
